@@ -88,8 +88,21 @@ const pickyAF = vacations.filter(function(item){
     return item.hiking == true &&
     item.beach == true;
 });
-console.log('If you are a picky MF, here are your options: ' + (pickyAF));
-
+function vacationGoals (goal){
+    if (goal == 'hiking'){
+        return hikey;
+    }else if (goal == 'beach'){
+        return beachy;
+    }else if (goal == 'both'){
+        return pickyAF;
+    }else{
+        return 'Sorry, does not compute';
+    }
+}
+vacationGoals('hiking');
+vacationGoals('both');
+vacationGoals('fishing');
+console.log(vacationGoals('both'));
 /* 
 TASK 7 🚀
 // write a function that finds the average of overall ratings in a given array. The function should take an array as its argument and should return the average of the overall ratings in that array 
