@@ -6,7 +6,9 @@ const toppings = ['Mushrooms ', 'Tomatoes', 'Eggs', 'Chili', 'Lettuce', 'Avocado
 TASK 1 🚀
 // The customer would like to see the topping options, console log out each of the toppings one by one in the array above 
 */
-
+toppings.forEach(function(item){
+    console.log(item);
+});
 
 /*
 TASK 2 🚀
@@ -15,13 +17,20 @@ for example you no longer have any onions and need to remove it from the list of
 Use .forEach() - hint - you will need to include the index in the callback
  */
 
-
+toppings.forEach(function(item, index, toppings){
+    if(item === 'Onions'){
+        toppings.splice(index, 1)
+    }
+});
+console.log(toppings); /* 'Onions' is now removed from the array */
 
 /*
 TASK 3 🚀
 // Sort the topping alphabetically and return them in a new array 
 */
-
+const alphaBetical = [...toppings];
+alphaBetical.sort();
+console.log(alphaBetical);
 
 
 
@@ -42,13 +51,23 @@ const vacations = [
 TASK 4 🚀
 // The travel agent would like to send a couple on their honeymoon to a location with a beach and a temperature above 90 degrees. return their options in a new array 
 */
-
+const honeyMoon = vacations.filter(function (item){
+    return item.beach == true &&
+    item.temperature >= 90;
+});
+console.log(honeyMoon);
 
 
 /*
 TASK 5 🚀
 // A developer decides to become a digital nomad for a year, they would like to live in a place with strong wifi, a beach, and good hiking, return their options
 */
+const digitalNomad = vacations.filter(function(item){
+    return item.beach == true &&
+    item.wifi == 'strong' &&
+    item.hiking == true;
+});
+console.log(digitalNomad);
 
 
 
@@ -56,19 +75,48 @@ TASK 5 🚀
 TASK 6 🚀
 // write a function that allows a user to sort their vacations by hiking opportunities, beach access or a mix of both and return their options
 */
+const hikey = vacations.filter(function(item){
+    return item.hiking == true;
+});
+console.log(hikey);
 
-
+const beachy = vacations.filter(function(item){
+    return item.beach == true;
+});
+console.log(beachy);
+const pickyAF = vacations.filter(function(item){
+    return item.hiking == true &&
+    item.beach == true;
+});
+console.log('If you are a picky MF, here are your options: ' + (pickyAF));
 
 /* 
 TASK 7 🚀
 // write a function that finds the average of overall ratings in a given array. The function should take an array as its argument and should return the average of the overall ratings in that array 
 hint - use .reduce()
 */
-
-
+const getAvg = vacations.reduce(function(accumulator, item){
+     return accumulator + item.overall_rating / vacations.length;
+}, 0);
+console.log(getAvg);
 /*
 TASK 8 🚀
 Find the airport codes for each of the cities in the vacation array and write a function to add them to the objects in the array
 hint - your function should include array, index and code as parameters
 you will need to invoke the function each time you wish to add a new code
 */
+function addCodes(array, index, code){
+    array[index].code = code;
+    return array;
+  };
+  addCodes(vacations, 0, 'YYZ');
+  addCodes(vacations, 1, 'MIA');
+  addCodes(vacations, 2, 'TLV');
+  addCodes(vacations, 3, 'IST');
+  addCodes(vacations, 4, 'BKK');
+  addCodes(vacations, 5, 'LIM');
+  addCodes(vacations, 6, 'MCT');
+  addCodes(vacations, 7, 'SYD');
+  addCodes(vacations, 8, 'CPT');
+  addCodes(vacations, 9, 'CUN');
+  console.log(vacations); /* Codes are added to output for each airport */
